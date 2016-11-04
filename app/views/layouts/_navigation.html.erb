@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <%= link_to 'EVENTS', events_path %> |
+  <%= link_to 'LOCATIONS', locations_path %> |
+  <%= link_to 'LOG OUT', destroy_user_session_path,
+                :method => :delete %>
+<% end %>
