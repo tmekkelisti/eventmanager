@@ -23,7 +23,8 @@
 
   <div class="field">
     <%= f.label :location_id %>
-    <%= f.number_field :location_id %>
+    <%= f.select :location_id, options_from_collection_for_select(@locations, :id, :name),
+      :prompt => 'Choose location' %>
   </div>
 
   <div class="field">
@@ -34,11 +35,6 @@
   <div class="field">
     <%= f.label :end_time %>
     <%= f.datetime_select :end_time %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
   </div>
 
   <div class="actions">
