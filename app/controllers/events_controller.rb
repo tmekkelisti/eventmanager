@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :check_owner, only: [:edit, :update, :destroy]
 
   # GET /events
   def index
@@ -13,10 +14,12 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @locations = Location.all
   end
 
   # GET /events/1/edit
   def edit
+    @locations = Location.all
   end
 
   # POST /events
@@ -47,6 +50,12 @@ class EventsController < ApplicationController
   end
 
   private
+    def check_owner
+      if @event.user != current_user
+        redirect_to root_path, notice: 'You cannot touch this.'
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
