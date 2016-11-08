@@ -18,4 +18,9 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:events) }
 
+  describe "Password and password confirmation mismatch" do
+    let(:u) { FactoryGirl.build(:user, password_confirmation: "mismatch") }
+    it { expect(u).not_to be_valid }
+  end
+
 end
