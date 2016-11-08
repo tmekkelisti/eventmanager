@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :locations
+  resources :locations, except: [:destroy, :edit, :update]
   root to: 'events#index'
   resources :events
   devise_for :users

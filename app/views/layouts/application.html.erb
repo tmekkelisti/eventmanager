@@ -9,7 +9,12 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
-    <%= yield %>
+    <div class="ui container">
+      <%= render 'layouts/navigation' %>
+      <% if notice %>
+        <div id="notice" class="ui info message"><%= notice %></div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
