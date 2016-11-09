@@ -1,6 +1,21 @@
 <div class="ui grid">
   <div class="ten wide column">
     <%= render 'single_event', event: @event %>
+
+    <h3 class="ui dividing header">Leave a comment</h3>
+
+    <%= form_for [@event, Comment.new], html: {class: "ui form"} do |f| %>
+    <div class="field">
+      <%= f.text_area :content, placeholder: "Add a comment" %><br/>
+      <%= f.submit "Add Comment", class: 'ui basic button' %>
+    </div>
+    <% end %>
+
+    <div class="ui comments">
+      <h3 class="ui dividing header">Comments</h3>
+      <%= render(partial: 'comments/comment', collection: @event.comments) %>
+    </div>
+
   </div>
   <div class="six wide column">
     <div class="ui raised segment">
@@ -30,6 +45,7 @@
     </div>
   </div>
 </div>
+
 
 <br />
 
