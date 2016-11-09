@@ -1,4 +1,5 @@
 class ParticipationsController < ApplicationController
+  before_action :check_if_ended, only: [:create]
   def create
     if current_user.event_participations.ids.include?(params[:event_id].to_i)
       destroy_old_participation(current_user
@@ -21,5 +22,11 @@ class ParticipationsController < ApplicationController
 
   def destroy_old_participation(participation_id)
     Participation.destroy(participation_id)
+  end
+
+  def check_if_ended
+    if Event.find_by_id(params[:event_id]).try(:is_ended)
+      redirect_to events_path, notice: 'Event is already ended'
+    end
   end
 end
