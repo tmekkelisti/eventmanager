@@ -13,4 +13,8 @@ class Event < ApplicationRecord
   validates :end_time, presence: true
   validates :location_id, presence: true
   validates :user_id, presence: true
+
+  def is_ended
+    self.end_time < DateTime.now
+  end
 end

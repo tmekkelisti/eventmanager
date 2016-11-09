@@ -1,13 +1,22 @@
 <div class="ui top attached segment">
-  <h1 class="ui header">
-    <div class="content"><%= link_to event.name, event_path(event) %></div>
-    <div class="sub header">
-      <%= event.start_time.strftime("%d.%m.%Y %H:%M") %> -
-      <%= event.end_time.strftime("%d.%m.%Y %H:%M") %> |
-      Created by: <%= event.user.username %>
+  <div class="ui grid">
+    <div class="twelve wide column">
+      <h1 class="ui header">
+        <div class="content"><%= link_to event.name, event_path(event) %></div>
+        <div class="sub header">
+          <%= event.start_time.strftime("%d.%m.%Y %H:%M") %> -
+          <%= event.end_time.strftime("%d.%m.%Y %H:%M") %> |
+          Created by: <%= event.user.username %>
+        </div>
+      </h1>
+      <p><%= event.description %></p>
     </div>
-  </h1>
-  <p><%= event.description %></p>
+    <div class="four wide column">
+      <% if event.is_ended %>
+        <div class="ui red right ribbon label">ENDED</div>
+      <% end %>
+    </div>
+  </div>
 
 </div>
 <div class="ui attached segment">
@@ -52,5 +61,6 @@
   <%= render 'participate_form', status: 'yes', button: 'Join', event_id: event.id %>
   <%= render 'participate_form', status: 'maybe', button: 'Maybe', event_id: event.id %>
   <%= render 'participate_form', status: 'no', button: "I'm a loser", event_id: event.id %>
-</div></div>
+  </div>
+</div>
 
