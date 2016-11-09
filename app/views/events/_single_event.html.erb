@@ -1,4 +1,4 @@
-<div class="ui raised segment">
+<div class="ui top attached segment">
   <h1 class="ui header">
     <div class="content"><%= link_to event.name, event_path(event) %></div>
     <div class="sub header">
@@ -8,9 +8,49 @@
     </div>
   </h1>
   <p><%= event.description %></p>
-  <h2 class="ui sub header">
-    Location
-  </h2>
-  <span><%= link_to event.location.name, location_path(event.location) %> (<%= event.location.address %>)</span>
 
 </div>
+<div class="ui attached segment">
+  <div class="ui grid">
+    <div class="four wide column">
+      <h2 class="ui sub header">
+        Location
+      </h2>
+      <span>
+        <%= link_to event.location.name, location_path(event.location) %>
+          (<%= event.location.address %>)
+      </span>
+    </div>
+    <div class="four wide column">
+      <h2 class="ui sub header">
+        Coming
+      </h2>
+      <span>
+        <span><%= event.participations.yes.length %></span>
+      </span>
+    </div>
+    <div class="four wide column">
+      <h2 class="ui sub header">
+        Propably.. maybe?
+      </h2>
+      <span>
+        <span><%= event.participations.maybe.length %></span>
+      </span>
+    </div>
+    <div class="four wide column">
+      <h2 class="ui sub header">
+        Losers
+      </h2>
+      <span>
+        <span><%= event.participations.no.length %></span>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="ui bottom attached segment">
+  <div class="three ui buttons">
+  <%= render 'participate_form', status: 'yes', button: 'Join', event_id: event.id %>
+  <%= render 'participate_form', status: 'maybe', button: 'Maybe', event_id: event.id %>
+  <%= render 'participate_form', status: 'no', button: "I'm a loser", event_id: event.id %>
+</div></div>
+

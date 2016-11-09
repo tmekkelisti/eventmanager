@@ -1,34 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="ui grid">
+  <div class="ten wide column">
+    <%= render 'single_event', event: @event %>
+  </div>
+  <div class="six wide column">
+    <div class="ui raised segment">
+      <div class="ui grid">
+        <div class="eight wide column">
+          <h2 class="ui sub header">
+            Coming
+          </h2>
+          <ul class="ui list">
+            <% @event.participations.yes.each do |p| %>
+              <li><%= p.user.username %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="eight wide column">
+          <h2 class="ui sub header">
+            Maybe
+          </h2>
+          <ul class="ui list">
+            <% @event.participations.maybe.each do |p| %>
+              <li><%= p.user.username %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location_id %>
-</p>
-
-<p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
-</p>
-
-<p>
-  <strong>End time:</strong>
-  <%= @event.end_time %>
-</p>
-
-<p>
-  <strong>Created by:</strong>
-  <%= @event.user_id %>
-</p>
+<br />
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

@@ -1,0 +1,6 @@
+  <%= form_tag(participations_path, method: 'POST') do %>
+    <%= hidden_field_tag(:status, status) %>
+    <%= hidden_field_tag(:event_id, event_id) %>
+    <%= button_tag(button, class: 'ui basic button',
+      disabled: participating_with_status(current_user, event_id, status)) %>
+  <% end %>

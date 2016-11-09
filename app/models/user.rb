@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :rememberable, :trackable, :validatable
 
   has_many :events
+  has_many :participations
+  has_many :event_participations, :through => :participations, :source => :event
 
   def email_required?
     false
