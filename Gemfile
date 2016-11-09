@@ -33,7 +33,7 @@ gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
-
+gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'mysql2', '~> 0.4.5'
 
 group :development, :test do

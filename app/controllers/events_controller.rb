@@ -4,7 +4,13 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    @locations = Location.all
+    @q = Event.ransack(params[:q])
+    if params[:location_id]
+      @events = Location.where(id: params[:location_id].to_i).first.events
+    else
+      @events = @q.result(distinct: true)
+    end
   end
 
   # GET /events/1
@@ -29,6 +35,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
+      @locations = Location.all
       render :new
     end
   end

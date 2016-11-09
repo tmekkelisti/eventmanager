@@ -15,3 +15,10 @@
 //= require turbolinks
 //= require_tree .
 //= require semantic_ui/semantic_ui
+$(document)
+    .on('turbolinks:load', function () {
+      $('.ui.dropdown')
+        .dropdown()
+      ;
+    })
+;

@@ -1,5 +1,25 @@
 <h1 class="ui header">Events</h1>
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_event_path, class: 'ui basic button' %>
+
+<div class="ui floating dropdown search icon button">
+  <span class="text">Select location</span>
+  <div class="menu">
+    <%= link_to 'All', events_path, class: 'item' %>
+    <% @locations.each do |location| %>
+      <%= link_to location.name, events_path(location_id: location.id), class: 'item' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="ui text menu">
+  <div class="header item">Sort By</div>
+  <%= sort_link(@q, :start_time, 'Start time',
+      {}, { :class => 'item' }) %>
+  <%= sort_link(@q, :end_time, 'End time',
+      {}, { :class => 'item' }) %>
+  <%= sort_link(@q, :location_id, 'Location',
+      {}, { :class => 'item' }) %>
+</div>
 
 <% @events.each do |event| %>
   <%= render 'single_event', event: event %>
